@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" BackgroundColor="#1B1A28"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="CinemaApp.MainPage">
+
+    <Grid RowDefinitions="Auto, *" Padding="30" RowSpacing="40">
+        <Label Text="IMAX" TextColor="#00B7FC" FontSize="40" FontAttributes="Bold" HorizontalOptions="Center" />
+        <StackLayout Grid.Row="1" Spacing="15">
+            <Label Text="Your Tickets" TextColor="White" FontSize="20" FontAttributes="Bold"/>
+            <CollectionView SelectionMode="Single" ItemsSource="{Binding Tickets}" 
+                            SelectedItem="{Binding SelectedTicket}" SelectionChanged="TicketSelected">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="20" HorizontalItemSpacing="20"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.EmptyView>
+                    <Label Text="No ticket found." TextColor="Gray" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </CollectionView.EmptyView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Spacing="10">
+                            <Image Source="{Binding Image}" Aspect="AspectFill" HeightRequest="235" 
+                                   HorizontalOptions="FillAndExpand"/>
+                            <Label Text="{Binding MovieTitle}" TextColor="White" FontSize="14"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </Grid>
+</ContentPage>
